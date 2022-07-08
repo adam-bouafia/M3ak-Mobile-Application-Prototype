@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "371418479780",
+    "project_id": "m3ak-application",
+    "storage_bucket": "m3ak-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371418479780:android:1345d179c5393b0254ba31",
+        "android_client_info": {
+          "package_name": "com.m3ak.m3ak_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371418479780-t1pf5brqr7epr8j333800t0igo1d3es0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.m3ak.m3ak_application",
+            "certificate_hash": "f04b0eb5649e5df5b7275c788b07b00010473a40"
+          }
+        },
+        {
+          "client_id": "371418479780-6cvdh6t9qtmok4lkuqobbomq13vf3tu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAABn9Oby-F_5EWqqGi26yfUxDN6UijpxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371418479780-6cvdh6t9qtmok4lkuqobbomq13vf3tu1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
