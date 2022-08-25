@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989457159874",
+    "project_id": "dhayen-8875b",
+    "storage_bucket": "dhayen-8875b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989457159874:android:822b27f3474697b5c04d5b",
+        "android_client_info": {
+          "package_name": "com.dhayen.dhayen_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989457159874-gdu4299ot88vk72h2eij7ilp9bv714un.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOP4HidKOiaSIZUOMSUOIWyMk4Y_RqZpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989457159874-gdu4299ot88vk72h2eij7ilp9bv714un.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
