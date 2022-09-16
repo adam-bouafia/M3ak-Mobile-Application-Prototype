@@ -12,7 +12,7 @@ class AudioBackgroundRecord {
     }
     return _instance! ;
   }
-  _(){} // private constructor
+  AudioBackgroundRecord._(){} // private constructor
 
   Future<void> startRecordingService() {
     return  AudioBackgroundRecordPlatform.instance.startService();
