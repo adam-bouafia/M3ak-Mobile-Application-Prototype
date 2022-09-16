@@ -3,6 +3,17 @@ import 'dart:ffi';
 import 'audio_background_record_platform_interface.dart';
 
 class AudioBackgroundRecord {
+
+  static AudioBackgroundRecord? _instance = null ;
+  static AudioBackgroundRecord getInstance()
+  {
+    if(_instance==null){
+      _instance = AudioBackgroundRecord._();
+    }
+    return _instance! ;
+  }
+  _(){} // private constructor
+
   Future<void> startRecordingService() {
     return  AudioBackgroundRecordPlatform.instance.startService();
   }
