@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  final _audioBackgroundRecordPlugin = AudioBackgroundRecord();
+  final _audioBackgroundRecordPlugin = AudioBackgroundRecord.getInstance();
   String dir = "";
   int maxRecordDuration = 0;
 
@@ -32,9 +32,9 @@ class _MyAppState extends State<MyApp> {
     _audioBackgroundRecordPlugin.configure(
         maxDurationInMillis: 5000);
     _getServiceStatus();
-    _audioBackgroundRecordPlugin.setOnRecordStoppedCallback(() {
+    _audioBackgroundRecordPlugin.setOnRecordStatusChangedCallback((status, errorMsg) {
       _getServiceStatus(); setState(() {
-        print("a message from the callback");
+        print("a message from the callback status = $status");
       });
     });
   }

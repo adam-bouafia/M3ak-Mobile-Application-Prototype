@@ -43,7 +43,7 @@ class AudioBackgroundRecord {
   Future<bool?> isRecording() {
     return AudioBackgroundRecordPlatform.instance.isRecording();
   }
-  void setOnRecordStoppedCallback(void Function()? cb){
-    AudioBackgroundRecordPlatform.instance.onRecordStoppedCallback = cb;
+  void setOnRecordStatusChangedCallback(void Function(int status , String? errorMsg)? cb){
+    AudioBackgroundRecordPlatform.instance.onRecordStatusChangedCallback = cb;
   }
 }

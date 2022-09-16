@@ -31,8 +31,8 @@ class MethodChannelAudioBackgroundRecord extends AudioBackgroundRecordPlatform {
      var result  = methodChannel.invokeMethod("startService");
     methodChannel.setMethodCallHandler((call) async {
       if(call.method == "recordStoppedCallBack"){
-        if(onRecordStoppedCallback!=null){
-          onRecordStoppedCallback!() ;
+        if(onRecordStatusChangedCallback!=null){
+          onRecordStatusChangedCallback!(call.arguments["status"],call.arguments["error"]) ;
         }
       }
     });

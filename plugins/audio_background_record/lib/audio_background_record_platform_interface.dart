@@ -26,11 +26,11 @@ abstract class AudioBackgroundRecordPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-   void Function()? _onRecordStoppedCallback ;
-   set onRecordStoppedCallback (void Function()? cb ){
-     _onRecordStoppedCallback = cb ;
+   void Function(int status , String? errorMsg)? _onRecordStatusChangedCallback ;
+   set onRecordStatusChangedCallback (void Function(int status , String? errorMsg)? cb ){
+     _onRecordStatusChangedCallback = cb ;
    }
-  void Function()?  get  onRecordStoppedCallback => _onRecordStoppedCallback ;
+  void Function(int status , String? errorMsg)?  get  onRecordStatusChangedCallback => _onRecordStatusChangedCallback ;
 
 
   Future<bool?> startRecording() {

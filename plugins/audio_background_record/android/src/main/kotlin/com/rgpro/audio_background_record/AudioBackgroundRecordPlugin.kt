@@ -15,7 +15,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 import java.io.File
 
 /** AudioBackgroundRecordPlugin */
-class AudioBackgroundRecordPlugin: FlutterPlugin, MethodCallHandler,ServiceConnection,AudioRecordService.OnRecordStopListener {
+class AudioBackgroundRecordPlugin: FlutterPlugin, MethodCallHandler,ServiceConnection,AudioRecordService.OnRecordStatusChangedListener {
   companion object{
     val TAG : String = AudioBackgroundRecordPlugin.javaClass.name
   }
@@ -84,6 +84,7 @@ class AudioBackgroundRecordPlugin: FlutterPlugin, MethodCallHandler,ServiceConne
     else if(call.method == "startService"){
       if(this.service!=null){
         Log.d(TAG,"service already started " )
+
         result.success(true)
       }else{
         if(context.startService(audioRecordServiceIntent)!=null) {
@@ -103,7 +104,7 @@ class AudioBackgroundRecordPlugin: FlutterPlugin, MethodCallHandler,ServiceConne
       }else{
           //this.service!!.unbindService(this);
           if(this.context.stopService(audioRecordServiceIntent)){
-            this.service!!.onStopListener = this
+            this.service!!.onStatusChangedListener = null
             this.service = null
             result.success(true)
           }else{
@@ -176,7 +177,7 @@ class AudioBackgroundRecordPlugin: FlutterPlugin, MethodCallHandler,ServiceConne
      val bridge = service as AudioRecordService.AudioRecordServiceBridge?
     bridge?.let{
       this.service = it.service ;
-      this.service!!.onStopListener = this
+      this.service!!.onStatusChangedListener = this
       //applying any saved configuration :
       //outputDirectory
       prefs.getString("directory",null)?.let {
@@ -194,8 +195,8 @@ class AudioBackgroundRecordPlugin: FlutterPlugin, MethodCallHandler,ServiceConne
     this.service = null ;
   }
 
-  override fun onRecordStop() {
-    channel.invokeMethod("recordStoppedCallBack",null);
+  override fun onStatusChanged(status:Int , errorMsg : String?) {
+    channel.invokeMethod("recordStoppedCallBack", hashMapOf( "status" to status,"error" to errorMsg ));
   }
 
 }

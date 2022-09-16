@@ -54,8 +54,8 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
     inner class AudioRecordServiceBridge(service: AudioRecordService) : Binder() {
         val service: AudioRecordService = service;
     }
-    interface OnRecordStopListener{
-        fun onRecordStop() ;
+    interface OnRecordStatusChangedListener{
+        fun onStatusChanged(state : Int , errorMsg : String? = null ) ;
     }
 
     private var recorder: MediaRecorder? = null
@@ -68,13 +68,13 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
     private var outDirectory: String? = null
     private var maxDuration : Int? = default_MaxDuration
 
-    private var _onStopListener : OnRecordStopListener? =null
-    public var onStopListener: OnRecordStopListener?
+    private var _onStatusChangedListener : OnRecordStatusChangedListener? =null
+    public var onStatusChangedListener: OnRecordStatusChangedListener?
         get() {
-            return _onStopListener
+            return _onStatusChangedListener
         }
         set(value) {
-            _onStopListener = value
+            _onStatusChangedListener = value
         }
 
 
@@ -85,7 +85,8 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
     override fun onDestroy() {
         super.onDestroy()
         recorder?.let {
-            it.stop()
+            if(isRecording)
+                it.stop()
             it.release();
         }
         notificationMgr.cancel(id)
@@ -156,6 +157,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
             Log.e(TAG, "error ${e.message}");
             recorder?.release();
             recorder = null;
+            onStatusChangedListener?.onStatusChanged(0,e.message) // error
             return false;
         }
         return true;
@@ -172,22 +174,24 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
         recorder?.setOutputFile(filename);
 
         recorder?.setMaxDuration(maxDuration!!)
-        Log.d(TAG, "maxDuration is set to $maxDuration")
-        Log.d(TAG, "startRecording: final init")
+
         try {
 
 
             recorder?.prepare();
             recorder?.start();
             isRecording = true;
+            onStatusChangedListener?.onStatusChanged(1,null);
             updateNotification();
             Log.d(TAG, "startRecording: started")
         } catch (e: IOException) {
             isRecording = false;
             Log.e(TAG, "startRecording: ", e)
+            onStatusChangedListener?.onStatusChanged(0,e.message) // error
         } catch (e: IllegalStateException) {
             isRecording = false;
             Log.e(TAG, "startRecording: ", e)
+            onStatusChangedListener?.onStatusChanged(0,e.message) // error
         }
 
     }
@@ -197,8 +201,9 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
             if(isRecording) {
                 try {
                     it.stop()
-                    onStopListener?.onRecordStop();
-                } catch (e: IllegalStateException) {
+                    onStatusChangedListener?.onStatusChanged(2,null);
+                } catch (e:Exception) {
+                    onStatusChangedListener?.onStatusChanged(0,e.message) // error
                 }
 
             }
@@ -207,7 +212,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
         }
         isRecording = false;
         updateNotification();
-        Log.d(TAG, "stopRecording $onStopListener")
+        Log.d(TAG, "stopRecording $onStatusChangedListener")
     }
 
     public fun isRecording(): Boolean {
