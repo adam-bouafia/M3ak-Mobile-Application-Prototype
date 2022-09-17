@@ -63,7 +63,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
     private var filename: String = ""
     private var isRecording = false
     private val id: Int = 7
-    private lateinit var notificationMgr: NotificationManager
+//    private lateinit var notificationMgr: NotificationManager
 
     private var outDirectory: String? = null
     private var maxDuration : Int? = default_MaxDuration
@@ -106,7 +106,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
             notificationMgr.createNotificationChannel(channel)
         }
         default_outDirectory = this.application.baseContext.externalCacheDir?.absolutePath!!;
-        updateNotification()
+//        updateNotification()
     }
 
 //    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -120,24 +120,24 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
 //        return super.onStartCommand(intent, flags, startId)
 //    }
 
-    private fun updateNotification() {
-        val nb = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationCompat.Builder(this.applicationContext, "audioRecordNotification")
-        } else {
-            NotificationCompat.Builder(this.applicationContext)
-        }
-        nb.setContentTitle(notificationText.get("title"))
-            .setContentText(
-                if (isRecording()) {
-                    notificationText.get("recording")
-                } else {
-                    notificationText.get("ready")
-                }
-            )
-            .setSmallIcon(R.drawable.ic_bg_service_small)
-
-        notificationMgr.notify(id, nb.build())
-    }
+//    private fun updateNotification() {
+//        val nb = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationCompat.Builder(this.applicationContext, "audioRecordNotification")
+//        } else {
+//            NotificationCompat.Builder(this.applicationContext)
+//        }
+//        nb.setContentTitle(notificationText.get("title"))
+//            .setContentText(
+//                if (isRecording()) {
+//                    notificationText.get("recording")
+//                } else {
+//                    notificationText.get("ready")
+//                }
+//            )
+//            .setSmallIcon(R.drawable.ic_bg_service_small)
+//
+//        notificationMgr.notify(id, nb.build())
+//    }
 
     private fun prepareNewRecorderInstance(): Boolean {
 
@@ -182,7 +182,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
             recorder?.start();
             isRecording = true;
             onStatusChangedListener?.onStatusChanged(1,null);
-            updateNotification();
+//            updateNotification();
             Log.d(TAG, "startRecording: started")
         } catch (e: IOException) {
             isRecording = false;
@@ -211,7 +211,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
 
         }
         isRecording = false;
-        updateNotification();
+//        updateNotification();
         Log.d(TAG, "stopRecording $onStatusChangedListener")
     }
 
