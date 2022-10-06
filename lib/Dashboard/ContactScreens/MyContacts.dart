@@ -38,7 +38,7 @@ class _MyContactsScreenState extends State<MyContactsScreen> {
           elevation: 0,
           title: Text(
             "SOS Contacts",
-            style: TextStyle(fontFamily: 'Montserrat',
+            style: TextStyle(fontFamily: 'metaplusmedium',
                 fontSize: 26, fontWeight: FontWeight.w900, color: Colors.black),
           ),
           backgroundColor: Colors.transparent,

@@ -19,7 +19,7 @@ class AboutUs extends StatelessWidget {
         applicationVersion: "1.0.0",
         applicationIcon: Image.asset(
           "assets/logoss.png",
-          height: 35,
+          height: 50,
         ),
         applicationName: "Dhayen",
         applicationLegalese:
@@ -36,7 +36,7 @@ class AboutUs extends StatelessWidget {
           children: [
             Text(
               "propos".tr,
-              style: TextStyle(fontFamily: 'Montserrat',color: Colors.black, fontSize: 26),
+              style: TextStyle(fontFamily: 'metaplusmedium',color: Colors.black, fontSize: 26),
             ),
             SizedBox(
               width: 10,
@@ -71,9 +71,8 @@ class AboutUs extends StatelessWidget {
       body: ListView(
         children: [
           AboutCard(
-            asset: "logo",
             desc:
-                """Dhayen est une application mobile vigilante qui permet à l'utilisateur de rester connecté avec ceux qui s'en soucient ! Il donne à l'utilisateur la possibilité de partager l'emplacement en direct avec les personnes concernées via des alertes SOS et permet à l'utilisateur d'accéder aux services d'urgence. Soyez témoin de l'incident malheureux qui se produit et appelez à l'aide. C'est votre compagnon personnel.""",
+                "Dhayen est une application mobile vigilante qui permet à l'utilisateur de rester connecté avec ceux qui s'en soucient ! Il donne à l'utilisateur la possibilité de partager l'emplacement en direct avec les personnes concernées via des alertes SOS et permet à l'utilisateur d'accéder aux services d'urgence. Soyez témoin de l'incident malheureux qui se produit et appelez à l'aide. C'est votre compagnon personnel.",
             subtitle: "Vous méritez la sécurité!",
             title: "Dhayen",
             sizeFactor: 1.8,

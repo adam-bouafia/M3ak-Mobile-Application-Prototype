@@ -40,7 +40,7 @@ class TopBackSkipView extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         child: Container(
-          height: 58,
+          height: 60,
           child: Padding(
             padding: const EdgeInsets.only(left: 8, right: 16),
             child: Row(
@@ -58,7 +58,7 @@ class TopBackSkipView extends StatelessWidget {
                   position: _skipAnimation,
                   child: IconButton(
                     onPressed: onSkipClick,
-                    icon: Text('onbpass'.tr),
+                    icon: Text('onbpass'.tr,style: TextStyle(fontSize: 12)),
                   ),
                 ),
               ],

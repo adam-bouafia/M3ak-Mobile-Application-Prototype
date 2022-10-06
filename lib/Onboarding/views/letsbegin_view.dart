@@ -33,7 +33,7 @@ class _LetsbeginState extends State<Letsbegin> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(32.0))),
             title: Text('choislang'.tr,
-                style: TextStyle(fontFamily: 'Montserrat',fontSize: 22,)),
+                style: TextStyle(fontFamily: 'metaplusmedium',fontSize: 22,)),
             backgroundColor: Color(0xfff5ebe2),
             contentPadding: EdgeInsets.only(top: 16.0, bottom: 16.0,left: 16.0,right: 16.0),
             content: Container(
@@ -88,14 +88,14 @@ class _LetsbeginState extends State<Letsbegin> {
               padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: Text(
                 "Dhayen",
-                style: TextStyle(fontFamily: 'Montserrat',fontSize: 25.0, fontWeight: FontWeight.bold),
+                style: TextStyle(fontFamily: 'metaplusmedium',fontSize: 25.0, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(),
               child: Text(
                 'onbletbegdesc'.tr,
-                style: TextStyle(fontFamily: 'Montserrat',fontSize: 16,),
+                style: TextStyle(fontFamily: 'metaplusmedium',fontSize: 16,),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -114,7 +114,8 @@ class _LetsbeginState extends State<Letsbegin> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                          primary: Colors.kPrimaryColor,
+                          primary: Color(0xffB271AA),
+                          //primary: Colors.kPrimaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50))
                       ),
@@ -123,7 +124,7 @@ class _LetsbeginState extends State<Letsbegin> {
                     },
                     child: Text(
                       'changelang'.tr,
-                      style: TextStyle(fontFamily: 'Montserrat',
+                      style: TextStyle(fontFamily: 'metaplusmedium',
                         fontSize: 16,
                         color: Colors.white,
                        ),
@@ -138,26 +139,26 @@ class _LetsbeginState extends State<Letsbegin> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).padding.bottom + 16),
+                  bottom: MediaQuery.of(context).padding.bottom ),
               child: InkWell(
                 onTap: () {
                   widget.animationController.animateTo(0.2);
                 },
                 child: Container(
-                  height: 50,
+                  height: 55,
                   padding: EdgeInsets.only(
-                    left: 10.0,
-                    right: 10.0,
+                    left: 15.0,
+                    right: 15.0,
                     top: 15.0,
                     bottom: 15.0,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(38.0),
-                    color: Color(0xffd19974),
+                    color: Color(0xffB271AA),
                   ),
                   child: Text(
                     'onbletbegwelc'.tr,
-                    style: TextStyle(fontFamily: 'Montserrat',
+                    style: TextStyle(fontFamily: 'metaplusmedium',
                       fontSize: 20,
                       color: Colors.white,
                     ),

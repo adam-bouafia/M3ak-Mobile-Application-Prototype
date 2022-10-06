@@ -77,7 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("vpasc".tr,style: TextStyle(fontFamily: 'Montserrat',color: Color(0xff122136))),
+        Text("vpasc".tr,style: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xff122136))),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
@@ -85,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen> {
           },
           child: Text(
             "inscri".tr,
-            style: TextStyle(fontFamily: 'Montserrat',color: Color(0xffd19974), fontWeight: FontWeight.bold),
+            style: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xff6A3085), fontWeight: FontWeight.bold),
           ),
         )
       ],
@@ -110,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
       child: TextButton(
         child: Text(
           "fpass".tr,
-          style: TextStyle(fontFamily: 'Montserrat',color: Color(0xff122136)),
+          style: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xff122136)),
           textAlign: TextAlign.right,
         ),
         onPressed: () => Navigator.push(

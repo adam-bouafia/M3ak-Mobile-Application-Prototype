@@ -176,7 +176,7 @@ class _PhoneBookState extends State<PhoneBook> {
         ),
         title: TextField(
           textInputAction: TextInputAction.search,
-          style: TextStyle(fontFamily: 'Montserrat',color: Colors.white),
+          style: TextStyle(fontFamily: 'metaplusmedium',color: Colors.white),
           cursorColor: Colors.white,
           decoration: InputDecoration(
               focusedBorder: UnderlineInputBorder(
@@ -186,7 +186,7 @@ class _PhoneBookState extends State<PhoneBook> {
               prefixIcon: Icon(Icons.search,
                   color: Colors.white70, size: height * 0.03),
               hintText: 'Rechercher un nom',
-              hintStyle: TextStyle(fontFamily: 'Montserrat',color: Colors.white70)),
+              hintStyle: TextStyle(fontFamily: 'metaplusmedium',color: Colors.white70)),
           onChanged: (string) {
             setState(() {
               filteredContacts = _contacts
@@ -271,14 +271,14 @@ class _ItemsTileState extends State<ItemsTile> {
                 leading: CircleAvatar(
                     backgroundColor: Color(0xffebd7c5),
                     child: Text('${widget.c.displayName[0]}'.toUpperCase(),
-                        style: TextStyle(fontFamily: 'Montserrat',color: Colors.white)),
+                        style: TextStyle(fontFamily: 'metaplusmedium',color: Colors.white)),
                     radius: height * 0.025),
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       widget.c.displayName ?? "",
-                      style: TextStyle(fontFamily: 'Montserrat',
+                      style: TextStyle(fontFamily: 'metaplusmedium',
                           color: Colors.black, fontSize: height * 0.022),
                     ),
                     SizedBox(height: height * 0.01),
@@ -293,13 +293,13 @@ class _ItemsTileState extends State<ItemsTile> {
                           currentContact = i.value.replaceAll(" ", "");
                           return Text(
                             i.value ?? i.label ?? "",
-                            style: TextStyle(fontFamily: 'Montserrat',color: Colors.grey[600]),
+                            style: TextStyle(fontFamily: 'metaplusmedium',color: Colors.grey[600]),
                           );
                         }).toList())
                   ],
                 ),
                 trailing:
-                    Text('Sélectionner'.tr, style: TextStyle(fontFamily: 'Montserrat',color: Colors.grey[400])),
+                    Text('Sélectionner'.tr, style: TextStyle(fontFamily: 'metaplusmedium',color: Colors.grey[400])),
               ),
             ),
           );

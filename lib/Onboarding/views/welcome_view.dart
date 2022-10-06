@@ -64,10 +64,9 @@ class WelcomeView extends StatelessWidget {
               SlideTransition(
                 position: _welcomeImageAnimation,
                 child: Container(
-                  constraints: BoxConstraints(maxWidth: 550, maxHeight: 450),
                   child: Image.asset(
                     'assets/onboarding/welcome.gif',
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -75,15 +74,7 @@ class WelcomeView extends StatelessWidget {
                 position: _welcomeFirstHalfAnimation,
                 child: Text(
                   'onbwelcome'.tr,
-                  style: TextStyle(fontFamily: 'Montserrat',fontSize: 25.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
-                child: Text(
-                  'manipu'.tr,
-                  textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: 'metaplusmedium',fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

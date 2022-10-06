@@ -103,30 +103,32 @@ class ContactAccess extends StatelessWidget {
                         left: 64, right: 64, top: 16, bottom: 16),
                   child: Text(
                     'onbcontdesc'.tr,
-                    style: TextStyle(fontFamily: 'Montserrat',color: Color(0xff132137), fontSize: 17,),
+                    style: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xff132137), fontSize: 17,),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 40, right: 40, top: 50, bottom: 50),
+                padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
                 child: ElevatedButton(
-                    onPressed:checkpermission_contacts,
+                    onPressed:checkpermission_smsphone,
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xffd19974),
+                      primary: Color(0xffB271AA),
                       onPrimary: Colors.white,
-                      shadowColor: Color(0xffd19974),
-                      elevation: 3,
+                      shadowColor: Color(0xffB271AA),
+                      elevation: 8,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32.0)),
-                      minimumSize: Size(100, 40), //////// HERE
+                      //////// HERE
                     ),
-                    child: Text('onbcontautor'.tr,
-                      style: TextStyle(fontFamily: 'Montserrat',
+                    child: Center(child: Text('onbcontautor'.tr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontFamily: 'metaplusmedium',
                         color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500,
                       ),
-                    )
+                    ),
+                )
                 ),
               ),
             ],
@@ -135,15 +137,12 @@ class ContactAccess extends StatelessWidget {
       ),
     );
   }
-void checkpermission_contacts() async {
-  var status = await Permission.contacts.status;
-  if (status.isGranted) {
-    print("Permission is granted");
+  void checkpermission_smsphone() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.microphone,
+      Permission.storage,
+    ].request();
+    print("sms permission: ${statuses[Permission.microphone]}, "
+        "phone permission: ${statuses[Permission.storage]}");
   }
-  else if (status.isDenied) {
-    if (await Permission.contacts.request().isGranted) {
-      print("Permission was granted");
-    }
-  }
-}
 }

@@ -57,6 +57,17 @@ class _DashboardState extends State<Dashboard> {
         await appPermissions.Permission.phone.status;
     appPermissions.PermissionStatus smsPer =
         await appPermissions.Permission.sms.status;
+    appPermissions.PermissionStatus micPer =
+        await appPermissions.Permission.microphone.status;
+    appPermissions.PermissionStatus stoPer =
+        await appPermissions.Permission.storage.status;
+
+    if (stoPer != appPermissions.PermissionStatus.granted) {
+      await appPermissions.Permission.storage.request();
+    }
+    if (micPer != appPermissions.PermissionStatus.granted) {
+      await appPermissions.Permission.microphone.request();
+    }
     if (conPer != appPermissions.PermissionStatus.granted) {
       await appPermissions.Permission.contacts.request();
     }
@@ -321,7 +332,7 @@ class _DashboardState extends State<Dashboard> {
                   },
                   child: Image.asset(
                     "assets/home.png",
-                    height: 32,
+                    height: 40,
                   )),
               InkWell(
                   onTap: () {
@@ -330,7 +341,7 @@ class _DashboardState extends State<Dashboard> {
                         currentPage = 1;
                       });
                   },
-                  child: Image.asset("assets/phone_red.png", height: 36)),
+                  child: Image.asset("assets/phone_red.png", height: 40)),
             ],
           ),
         ),

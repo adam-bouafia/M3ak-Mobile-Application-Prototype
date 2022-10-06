@@ -37,16 +37,8 @@ class PolicyDialog extends StatelessWidget {
               },
             ),
           ),
-          FlatButton(
-            padding: EdgeInsets.all(0),
-            color: Theme.of(context).buttonColor,
+          TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(radius),
-                bottomRight: Radius.circular(radius),
-              ),
-            ),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -59,7 +51,7 @@ class PolicyDialog extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 "ferm".tr,
-                style: TextStyle(fontFamily: 'Montserrat',
+                style: TextStyle(fontFamily: 'metaplusmedium',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).textTheme.button.color,

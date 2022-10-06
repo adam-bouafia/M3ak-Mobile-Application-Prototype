@@ -1,21 +1,21 @@
 List<List<String>> sweetSayings = [
-  ["Votre présence", "illumine toute la pièce"],
-  ["Nous admirons", "Votre forte personnalité."],
-  ["Nous vous aiderons", "De toutes les manières possibles,"],
-  ["Tu es fort", "et courageux"]
+  ["Dhayen", "Yakfi"],
+  ["Dhayen", "Stop"],
+  ["Dhayen", "يكفي"],
+  ["Dhayen", "Stop"],
 ];
 
 List<String> articleTitle = [
-  "Militantes, étudiantes, activistes… Ces femmes qui se sont battues pour l’Algérie",
-  "Algérie - Droits des femmes :    « les violences les plus fréquentes sont familiales et conjugales »",
+  "Déclaration de l'IFE-EFI sur l'explosion de Beyrouth",
   "Combattre les violences faites aux femmes en Algérie : mobilisations et défis",
-  "La guerre d’Algérie racontée par les femmes"
+  "19 juin - Journée internationale pour l'élimination de la violence sexuelle en temps de conflit",
+  "La Révocation du Droit à L’avortement aux Etats-Unis est une Régression Majeure pour les Droits des Femmes"
 ];
 List<String> imageSliders = [
-  "https://www.middleeasteye.net/sites/default/files/styles/article_page/public/images-story/Zohra_Drif_Algeria_AFP.jpg",
-  "https://static.lpnt.fr/images/2018/03/09/13797743lpaw-13817511-article-1159892-jpg_6703468_660x281.jpg",
-  "https://www.awid.org/sites/default/files/banners/marchadamulheresnegras-2015-hugsabriyasimons-2224x1253.jpg",
-  "https://cdn-hub.ina.fr/page_hub/1170x600/375/article-corporate_44015eee-626b-4751-b7d1-c7448d1425af.jpeg",
+  "https://efi-ife.org/sites/default/files/styles/large/public/Protective%20Edge%201.jpg",
+  "https://efi-ife.org/sites/default/files/styles/large/public/field/image/Capture.PNG",
+  "https://efi-ife.org/sites/default/files/styles/large/public/EFI_Visuel_19Juin_FR_2.jpg",
+  "https://static.actu.fr/uploads/2022/06/2e772d9af312fa5c95a0d4c5e0fb8d4376fc7c4b.jpg",
 ];
 
 List<List<String>> articles = [

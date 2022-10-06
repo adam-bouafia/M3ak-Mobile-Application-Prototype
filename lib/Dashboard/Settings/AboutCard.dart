@@ -43,7 +43,7 @@ class AboutCard extends StatelessWidget {
                     ListTile(
                       title: Text(
                         title,
-                        style: TextStyle(fontFamily: 'Montserrat',
+                        style: TextStyle(fontFamily: 'metaplusmedium',
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                       subtitle: Text(subtitle),

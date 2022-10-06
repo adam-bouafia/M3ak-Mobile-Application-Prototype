@@ -94,15 +94,15 @@ class _AllArticlesState extends State<AllArticles>
                                       context,
                                       SafeWebView(
                                           index: index,
-                                          title: "Militantes, étudiantes, activistes… Ces femmes qui se sont battues pour l’Algérie",
-                                          url: "https://www.middleeasteye.net/fr/actu-et-enquetes/algerie-militantes-etudiantes-activistes-femmes-revolution-combat"));
+                                          title: "Déclaration de l'IFE-EFI sur l'explosion de Beyrouth",
+                                          url: "https://www.efi-ife.org/fr/d%c3%a9claration-de-life-efi-sur-lexplosion-de-beyrouth"));
                                 } else if (index == 1) {
                                   navigateToRoute(
                                       context,
                                       SafeWebView(
                                           index: index,
-                                          title: "Algérie - Droits des femmes : « les violences les plus fréquentes sont familiales et conjugales »",
-                                          url: "https://www.lepoint.fr/afrique/algerie-droits-des-femmes-les-violences-les-plus-frequentes-sont-familiales-et-conjugales-09-03-2018-2201165_3826.php"));
+                                          title: "Communiqué de presse - Dialogue politique régional en ligne :Combattre les violences faites aux femmes et aux filles et renforcer les droits des femmes dans le contexte de la pandémie de Covid-19",
+                                          url: "https://www.efi-ife.org/fr/communiqu%c3%a9-de-presse-dialogue-politique-r%c3%a9gional-en-ligne-combattre-les-violences-faites-aux-femmes"));
                                 } else if (index == 2) {
                                   navigateToRoute(
                                       context, ArticleDesc(index: index));
@@ -111,15 +111,15 @@ class _AllArticlesState extends State<AllArticles>
                                       context,
                                       SafeWebView(
                                           index: index,
-                                          title: "Combattre les violences faites aux femmes en Algérie : mobilisations et défis",
-                                          url: "https://www.awid.org/fr/nouvelles-et-analyse/combattre-les-violences-faites-aux-femmes-en-algerie-mobilisations-et-defis"));
+                                          title: "19 juin - Journée internationale pour l'élimination de la violence sexuelle en temps de conflit",
+                                          url: "https://efi-ife.org/fr/19-juin-journ%C3%A9e-internationale-pour-l%C3%A9limination-de-la-violence-sexuelle-en-temps-de-conflit"));
                                 } else {
                                   navigateToRoute(
                                       context,
                                       SafeWebView(
                                           index: index,
-                                          title: "La guerre d’Algérie racontée par les femmes",
-                                          url: "https://www.ina.fr/actualites-ina/la-guerre-d-algerie-racontee-par-les-femmes"));
+                                          title: "La Révocation du Droit à L’avortement aux Etats-Unis est une Régression Majeure pour les Droits des Femmes",
+                                          url: "https://efi-ife.org/fr/la-r%C3%A9vocation-du-droit-%C3%A0-l%E2%80%99avortement-aux-etats-unis-est-une-r%C3%A9gression-majeure-pour-les-droits-des"));
                                 }
                               },
                               child: Container(
@@ -146,7 +146,7 @@ class _AllArticlesState extends State<AllArticles>
                                           left: 8.0, bottom: 8),
                                       child: Text(
                                         articleTitle[index],
-                                        style: TextStyle(fontFamily: 'Montserrat',
+                                        style: TextStyle(fontFamily: 'metaplusmedium',
                                             fontWeight: FontWeight.bold,
                                             fontSize: MediaQuery.of(context)
                                                     .size

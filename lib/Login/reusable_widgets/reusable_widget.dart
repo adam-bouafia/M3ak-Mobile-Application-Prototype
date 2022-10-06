@@ -6,7 +6,7 @@ Image logoWidget(String imageName) {
     fit: BoxFit.fitWidth,
     width: 240,
     height: 240,
-    color: Color(0xffd19974),
+    color: Color(0xff6A3085),
   );
 }
 
@@ -18,14 +18,14 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     enableSuggestions: !isPasswordType,
     autocorrect: !isPasswordType,
     cursorColor: Color(0xff122136),
-    style: TextStyle(fontFamily: 'Montserrat',color: Color(0xff122136).withOpacity(0.9)),
+    style: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xff122136).withOpacity(0.9)),
     decoration: InputDecoration(
       prefixIcon: Icon(
         icon,
         color: Color(0xff122136),
       ),
       labelText: text,
-      labelStyle: TextStyle(fontFamily: 'Montserrat',color: Color(0xff122136).withOpacity(0.6)),
+      labelStyle: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xff122136).withOpacity(0.6)),
       filled: true,
       floatingLabelBehavior: FloatingLabelBehavior.never,
       fillColor: Colors.white.withOpacity(0.3),
@@ -57,10 +57,10 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
-              return Color(0xfff8eae1);
+              return Color(0xff6A3085);
 
             }
-            return Color(0xffd19974);
+            return Color(0xff6A3085);
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),

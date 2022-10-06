@@ -76,7 +76,7 @@ class CenterNextButton extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                         8 + 32 * (1 - _signUpMoveAnimation.value)),
-                    color: Color(0xffd19974),
+                    color: Color(0xffB271AA),
                   ),
                   child: PageTransitionSwitcher(
                     duration: Duration(milliseconds: 480),
@@ -106,7 +106,7 @@ class CenterNextButton extends StatelessWidget {
                                 children: [
                                   Text(
                                     'onbsignup'.tr,
-                                    style: TextStyle(fontFamily: 'Montserrat',
+                                    style: TextStyle(fontFamily: 'metaplusmedium',
                                       color: Colors.white,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
@@ -141,7 +141,7 @@ class CenterNextButton extends StatelessWidget {
                 children: [
                   Text(
                     'onbvousavez'.tr,
-                    style: TextStyle(fontFamily: 'Montserrat',
+                    style: TextStyle(fontFamily: 'metaplusmedium',
                       color: Colors.grey,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
@@ -156,8 +156,8 @@ class CenterNextButton extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => SignInScreen()));
                 },
                     child: Text('onbident'.tr,
-                        style: TextStyle(fontFamily: 'Montserrat',
-                        color: Color(0xffd19974),
+                        style: TextStyle(fontFamily: 'metaplusmedium',
+                        color: Color(0xffB271AA),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -198,7 +198,7 @@ class CenterNextButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(32),
                   color: _selectedIndex == i
-                      ? Color(0xffd19974)
+                      ? Color(0xffB271AA)
                       : Color(0xffE3E4E4),
                 ),
                 width: 10,

@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:audio_background_record/audio_background_record.dart';
 import 'package:background_location/background_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:get/get.dart';
 import 'package:shake/shake.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_android/shared_preferences_android.dart';
@@ -57,6 +59,10 @@ void onStart() async {
   ShakeDetector.autoStart(
       shakeThresholdGravity: 5,
       onPhoneShake: () async {
+        var prefs = await SharedPreferences.getInstance();
+        await prefs.reload();
+
+        //Vibration feedback for shaking the phone
         print("Test 1");
         if (await Vibration.hasVibrator()) {
           print("Test 2");
@@ -71,51 +77,77 @@ void onStart() async {
           }
           print("Test 5");
         }
+
+        //sms send config
         print("Test 6");
         String link = '';
         print("Test 7");
-        try {
-          double lat = _location?.latitude;
-          double long = _location?.longitude;
-          print("$lat ... $long");
-          print("Test 9");
-          link = "http://maps.google.com/?q=$lat,$long";
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          List<String> numbers = prefs.getStringList("numbers") ?? [];
-          String error;
+        //TODO if (sms send is enabled in the shared preference , then perceed with the following routine
+        if ((prefs.getBool("smsSend") ?? false) == true) {
           try {
-            if (numbers.isEmpty) {
-              screenShake = "No contact found, Please call Police ASAP.";
-              debugPrint(
-                'No Contacts Found!',
-              );
-              return;
-            } else {
-              for (int i = 0; i < numbers.length; i++) {
-                Telephony.backgroundInstance.sendSms(
-                    to: numbers[i],
-                    message:
-                        "Help Me! Shake mode activated. Track me here.\n$link");
+            double lat = _location?.latitude;
+            double long = _location?.longitude;
+            print("$lat ... $long");
+            print("Test 9");
+            link = "http://maps.google.com/?q=$lat,$long";
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            List<String> numbers = prefs.getStringList("numbers") ?? [];
+            String error;
+            try {
+              if (numbers.isEmpty) {
+                screenShake = "No contact found, Please call Police ASAP.";
+                debugPrint(
+                  'No Contacts Found!',
+                );
+                return;
+              } else {
+                for (int i = 0; i < numbers.length; i++) {
+                  Telephony.backgroundInstance.sendSms(
+                      to: numbers[i],
+                      message:
+                          "Help Me! Shake mode activated. Track me here.\n$link");
+                }
+                prefs.setBool("alerted", true);
+                screenShake = "SOS alert Sent! Shake mode activated.";
               }
-              prefs.setBool("alerted", true);
-              screenShake = "SOS alert Sent! Shake mode activated.";
+            } on PlatformException catch (e) {
+              if (e.code == 'PERMISSION_DENIED') {
+                error = 'Please grant permission';
+                print('Error due to Denied: $error');
+              }
+              if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
+                error = 'Permission denied- please enable it from app settings';
+                print("Error due to not Asking: $error");
+              }
             }
-          } on PlatformException catch (e) {
-            if (e.code == 'PERMISSION_DENIED') {
-              error = 'Please grant permission';
-              print('Error due to Denied: $error');
-            }
-            if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
-              error = 'Permission denied- please enable it from app settings';
-              print("Error due to not Asking: $error");
-            }
+            print("Test 10");
+            print(link);
+          } catch (e) {
+            print("Test 11");
+            print(e);
           }
-          print("Test 10");
-          print(link);
-        } catch (e) {
-          print("Test 11");
-          print(e);
+        } else {
+          print("sms send fonctionality is desactivated");
         }
+        //TODO test audio background service ( dont forget the necessary permissions)
+
+        var isServiceStarted = await AudioBackgroundRecord.getInstance()
+            .isRecordingServiceRunning();
+        var isRecording =
+            await AudioBackgroundRecord.getInstance().isRecording();
+        if (isServiceStarted) {
+          if (isRecording == false) {
+            if ((prefs.getBool("bgRecord") ?? false) == true) {
+              AudioBackgroundRecord.getInstance().startRecording();
+              print("bg recording is activated");
+            } else {
+              print("bg recording is deactivated");
+            }
+          } else {
+            AudioBackgroundRecord.getInstance().stopRecording();
+          }
+        }
+        //AudioBackgroundRecord.getInstance().configure(savetoDirectory: path);
       });
   print("Test 12");
 
@@ -136,6 +168,7 @@ void onStart() async {
 }
 
 const simplePeriodicTask = "simplePeriodicTask";
+
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     String contact = inputData['contact'];
@@ -146,7 +179,10 @@ void callbackDispatcher() {
     print(location);
     print(link);
     Telephony.backgroundInstance.sendSms(
-        to: contact, message: "I am on my way! every 15 Track me here.\n$link");
+        to: contact,
+      message: "I am on my way! every 15 Track me here.\n$link"
+      // message: "${'changelang'.tr}\n$link"
+    );
     return Future.value(true);
   });
 }

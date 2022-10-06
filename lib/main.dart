@@ -44,21 +44,22 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Dhayen',
       theme: ThemeData(
-        fontFamily: 'Montserrat',
-        primarySwatch: Colors.kPrimaryColor,
+        fontFamily: 'metaplusmedium',
+        //primarySwatch: Colors.kPrimaryColor,
+        //primarySwatch: Colors.red,
       ),
       home: FutureBuilder(
           future: isAppOpeningForFirstTime(),
           builder: (context, AsyncSnapshot<bool> snap) {
             if (snap.hasData) {
              if (snap.data) {
-                return OnboardingScreen(); //Dashboard
+               return Dashboard();//Dashboard
               } else {
                return OnboardingScreen();
                }
              } else {
                return Container(
-               color: Colors.white,
+               color: Colors.transparent,
                );
              }
           }

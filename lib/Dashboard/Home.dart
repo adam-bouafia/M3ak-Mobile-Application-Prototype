@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "urg".tr,
-                          style: TextStyle(fontFamily: 'Montserrat',
+                          style: TextStyle(fontFamily: 'metaplusmedium',
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                       ),
@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
                             ),
                           );
                         },
-                        child: Text("vps".tr, style: TextStyle(fontFamily: 'Montserrat')),
+                        child: Text("vps".tr, style: TextStyle(fontFamily: 'metaplusmedium',color: Colors.blueAccent)),
                       ),
                     ],
                   ),
@@ -80,8 +80,8 @@ class _HomeState extends State<Home> {
                   padding:
                       const EdgeInsets.only(left: 16.0, bottom: 10, top: 10),
                   child: Text(
-                    "Dcvls".tr,
-                    style: TextStyle(fontFamily: 'Montserrat',fontWeight: FontWeight.bold, fontSize: 20),
+                    "dcvls".tr,
+                    style: TextStyle(fontFamily: 'metaplusmedium',fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 LiveSafe(),
