@@ -25,7 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         elevation: 0,
         title: Text(
           "inscri".tr,
-          style: TextStyle(fontFamily: 'Montserrat',fontSize: 24,color:  Color(0xff122136), fontWeight: FontWeight.w500),
+          style: TextStyle(fontFamily: 'metaplusmedium',fontSize: 24,color:  Color(0xff122136), fontWeight: FontWeight.w500),
         ),
       ),
       body: Container(

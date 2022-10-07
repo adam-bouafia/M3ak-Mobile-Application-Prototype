@@ -243,7 +243,7 @@ class _SafeHomeState extends State<SafeHome> {
                                 ),
                                 SizedBox(width: 15),
                                 Text("actenc",
-                                    style: TextStyle(fontFamily: 'Montserrat',
+                                    style: TextStyle(fontFamily: 'metaplusmedium',
                                         color: Colors.red, fontSize: 10)),
                               ],
                             )),

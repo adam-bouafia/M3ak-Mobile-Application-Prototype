@@ -31,14 +31,14 @@ class ArticleDesc extends StatelessWidget {
             ),
             title: Text(
               "Daily Life",
-              style: TextStyle(fontFamily: 'Montserrat',color: Colors.grey[600], fontSize: 14),
+              style: TextStyle(fontFamily: 'metaplusmedium',color: Colors.grey[600], fontSize: 14),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               "Protecting each other at work in markets",
-              style: TextStyle(fontFamily: 'Montserrat',fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontFamily: 'metaplusmedium',fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
           ListTile(

@@ -52,8 +52,8 @@ class _SplashState extends State<Splash> {
                 padding: const EdgeInsets.only(bottom: 180.0),
                 child: Text(
                   "Dhayen",
-                  style: TextStyle(fontFamily: 'Montserrat',
-                      color: Color(0xffd19974),
+                  style: TextStyle(fontFamily: 'metaplusmedium',
+                      color: Color(0xff6A3085),
                       fontWeight: FontWeight.bold,
                       fontSize: 24),
                 ),
@@ -65,7 +65,7 @@ class _SplashState extends State<Splash> {
                 padding: const EdgeInsets.only(bottom: 140.0),
                 child: Text(
                   "mert".tr,
-                  style: TextStyle(fontFamily: 'Montserrat',color: Color(0xffd19974), fontSize: 18),
+                  style: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xffB271AA), fontSize: 18),
                 ),
               ),
             ),

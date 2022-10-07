@@ -63,6 +63,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
     private var filename: String = ""
     private var isRecording = false
     private val id: Int = 7
+
 //    private lateinit var notificationMgr: NotificationManager
 
     private var outDirectory: String? = null
@@ -106,7 +107,9 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
             notificationMgr.createNotificationChannel(channel)
         }
         default_outDirectory = this.application.baseContext.externalCacheDir?.absolutePath!!;
+
 //        updateNotification()
+
     }
 
 //    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -119,6 +122,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
 //        }
 //        return super.onStartCommand(intent, flags, startId)
 //    }
+
 
 //    private fun updateNotification() {
 //        val nb = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -138,6 +142,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
 //
 //        notificationMgr.notify(id, nb.build())
 //    }
+
 
     private fun prepareNewRecorderInstance(): Boolean {
 
@@ -182,7 +187,10 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
             recorder?.start();
             isRecording = true;
             onStatusChangedListener?.onStatusChanged(1,null);
+
 //            updateNotification();
+
+        
             Log.d(TAG, "startRecording: started")
         } catch (e: IOException) {
             isRecording = false;
@@ -211,7 +219,9 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
 
         }
         isRecording = false;
+
 //        updateNotification();
+
         Log.d(TAG, "stopRecording $onStatusChangedListener")
     }
 

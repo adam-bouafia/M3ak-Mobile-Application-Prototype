@@ -83,7 +83,7 @@ class Smsaccess extends StatelessWidget {
             children: [
               Text(
                 'onbsmsdesc'.tr,
-                style: TextStyle(fontFamily: 'Montserrat',color: Color(0xff132137), fontSize: 16,),
+                style: TextStyle(fontFamily: 'metaplusmedium',color: Color(0xff132137), fontSize: 16,),
                 textAlign: TextAlign.center,
               ),
               SlideTransition(
@@ -96,15 +96,15 @@ class Smsaccess extends StatelessWidget {
                     child: ElevatedButton(
                         onPressed:checkpermission_smsphone,
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xffd19974),
+                          primary: Color(0xffB271AA),
                           onPrimary: Colors.white,
-                          shadowColor: Color(0xffd19974),
+                          shadowColor: Color(0xffB271AA),
                           elevation: 5,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
                           minimumSize: Size(100, 40),
                         ),
                         child: Text('onbsmsautor'.tr,
-                          style: TextStyle(fontFamily: 'Montserrat',
+                          style: TextStyle(fontFamily: 'metaplusmedium',
                             color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500,),
                             textAlign: TextAlign.center,
                         )
@@ -135,6 +135,7 @@ class Smsaccess extends StatelessWidget {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.sms,
       Permission.phone,
+      Permission.contacts,
     ].request();
     print("sms permission: ${statuses[Permission.sms]}, "
         "phone permission: ${statuses[Permission.phone]}");

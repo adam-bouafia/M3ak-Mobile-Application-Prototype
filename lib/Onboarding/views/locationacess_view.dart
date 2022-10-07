@@ -103,7 +103,7 @@ class Locationaccess extends StatelessWidget {
                       left: 64, right: 64, top: 16, bottom: 16),
                     child: Text(
                       'onblocadesc'.tr,
-                      style: TextStyle(fontFamily: 'Montserrat', fontSize: 16,),
+                      style: TextStyle(fontFamily: 'metaplusmedium', fontSize: 16,),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -114,16 +114,16 @@ class Locationaccess extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed:checkpermission_location,
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xffd19974),
+                      primary: Color(0xffB271AA),
                       onPrimary: Colors.white,
-                      shadowColor: Color(0xffd19974),
+                      shadowColor: Color(0xffB271AA),
                       elevation: 6,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32.0)),
                       minimumSize: Size(100, 40), //////// HERE
                     ),
                     child: Text('onblocauto'.tr,
-                      style: TextStyle(fontFamily: 'Montserrat',
+                      style: TextStyle(fontFamily: 'metaplusmedium',
                         color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500,
                       ),
                     )
@@ -136,9 +136,8 @@ class Locationaccess extends StatelessWidget {
     );
   }
   void checkpermission_location() async {
-    var status = await Permission.location.status;
-    if (status.isDenied) {
-      await Permission.location.request();
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.location,
+    ].request();
     }
   }
-}

@@ -22,7 +22,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         elevation: 0,
         title: Text(
           "repass".tr,
-          style: TextStyle(fontFamily: 'Montserrat',fontSize: 24,color:  Color(0xff122136), fontWeight: FontWeight.w500),
+          style: TextStyle(fontFamily: 'metaplusmedium',fontSize: 24,color:  Color(0xff122136), fontWeight: FontWeight.w500),
         ),
       ),
       body: Container(
