@@ -90,13 +90,13 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
                 it.stop()
             it.release();
         }
-        notificationMgr.cancel(id)
+        //notificationMgr.cancel(id)
     }
 
 
     override fun onCreate() {
         super.onCreate()
-        notificationMgr = getSystemService(NOTIFICATION_SERVICE) as NotificationManager;
+        //notificationMgr = getSystemService(NOTIFICATION_SERVICE) as NotificationManager;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "audioRecordNotification"
             val descriptionText = ""
@@ -104,7 +104,7 @@ class AudioRecordService : Service(), MediaRecorder.OnInfoListener {
             val channel = NotificationChannel("audioRecordNotification", name, importance).apply {
                 description = descriptionText
             }
-            notificationMgr.createNotificationChannel(channel)
+            //notificationMgr.createNotificationChannel(channel)
         }
         default_outDirectory = this.application.baseContext.externalCacheDir?.absolutePath!!;
 
