@@ -109,7 +109,7 @@ class _SafeHomeState extends State<SafeHome> {
                             changeStateOfHomeSafe(true);
                             Workmanager().registerPeriodicTask(
                               "3",
-                              simplePeriodicTask,
+                              BackgroundServices.simplePeriodicTask ,
                               tag: "3",
                               inputData: {
                                 "contact":

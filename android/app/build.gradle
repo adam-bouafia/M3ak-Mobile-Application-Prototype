@@ -35,7 +35,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     //compileSdkVersion flutter.compileSdkVersion
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,7 +51,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+
         applicationId "com.dhayen.dhayen_application"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
