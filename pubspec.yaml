@@ -26,7 +26,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  flutter_background_service:
   flutter_local_notifications: ^9.9.1
   flutter_phone_direct_caller: ^2.0.0
   flutter_slidable: ^0.6.0

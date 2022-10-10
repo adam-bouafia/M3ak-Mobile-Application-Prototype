@@ -19,11 +19,6 @@ import 'package:workmanager/workmanager.dart';
 
 class BackgroundServices {
   BackgroundServices._() {}
-  static FlutterBackgroundService getInstance() {
-    _instance ??= FlutterBackgroundService();
-    return _instance;
-  }
-  static FlutterBackgroundService _instance = null;
   static final FlutterLocalNotificationsPlugin
   _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   static const simplePeriodicTask = "simplePeriodicTask";
@@ -31,8 +26,8 @@ class BackgroundServices {
 
   static const String smsNotificationChannelID = "BG_SMS_SEND_SERVICE";
   static const int smsNotificationID = 888;
-  static const  _smsNotificationDetails = const NotificationDetails(
-      android: const AndroidNotificationDetails(
+  static const  _smsNotificationDetails =  NotificationDetails(
+      android:  AndroidNotificationDetails(
           smsNotificationChannelID, smsNotificationChannelID,
           channelDescription: 'a service channel dedicated the Dahyen app',
           icon: "ic_bg_service_small"));
@@ -47,8 +42,8 @@ class BackgroundServices {
 
   static const String audioRecordNotificationChannelID = "BG_AUDIO_RECORD_SERVICE";
   static const int audioRecordNotificationID = 555;
-  static const  _audioRecordNotificationDetails = const NotificationDetails(
-      android: const AndroidNotificationDetails(
+  static const  _audioRecordNotificationDetails =  NotificationDetails(
+      android:  AndroidNotificationDetails(
           audioRecordNotificationChannelID, audioRecordNotificationChannelID,
           channelDescription: 'a service channel dedicated the Dahyen app to record audio',
           icon: "ic_bg_service_small"));
@@ -61,90 +56,53 @@ class BackgroundServices {
     _flutterLocalNotificationsPlugin.cancel(audioRecordNotificationID);
   }
 
-
-  static void onStartSmsService(ServiceInstance service) async {
-    WidgetsFlutterBinding.ensureInitialized();
-    DartPluginRegistrant.ensureInitialized();
-
-    Location _location;
+  static Location _location;
+  static void sendSms() async{
+    String screenShake = "Be strong, We are with you!";
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print("onstart services");
-
-    BackgroundServices.showSmsNotification(
-      title: "Safe Shake activated!",
-      content: "Be strong, We are with you!",);
-
-    service.on("smsSend").listen((event) async {
-      String screenShake = "Be strong, We are with you!";
+    try {
+      double lat = _location?.latitude;
+      double long = _location?.longitude;
+      String link = "http://maps.google.com/?q=$lat,$long";
+      List<String> numbers = prefs.getStringList("numbers") ?? [];
+      String error;
       try {
-        double lat = _location?.latitude;
-        double long = _location?.longitude;
-        String link = "http://maps.google.com/?q=$lat,$long";
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        List<String> numbers = prefs.getStringList("numbers") ?? [];
-        String error;
-        try {
-          if (numbers.isEmpty) {
-            screenShake = "No contact found, Please call Police ASAP.";
-            debugPrint(
-              'No Contacts Found!',
-            );
+        if (numbers.isEmpty) {
+          screenShake = "No contact found, Please call Police ASAP.";
+          debugPrint(
+            'No Contacts Found!',
+          );
 
-          } else {
-            for (int i = 0; i < numbers.length; i++) {
-              Telephony.backgroundInstance.sendSms(
-                  to: numbers[i],
-                  message:
-                  "Help Me! Shake mode activated. Track me here.\n$link");
-            }
-            prefs.setBool("alerted", true);
-            screenShake = "SOS alert Sent! Shake mode activated.";
+        } else {
+          for (int i = 0; i < numbers.length; i++) {
+            Telephony.backgroundInstance.sendSms(
+                to: numbers[i],
+                message:
+                "Help Me! Shake mode activated. Track me here.\n$link");
           }
-          //TODO translation
-          BackgroundServices.showSmsNotification(
-            title: "Safe Shake activated!",
-            content: screenShake,);
-        } on PlatformException catch (e) {
-          if (e.code == 'PERMISSION_DENIED') {
-            error = 'Please grant permission';
-            print('Error due to Denied: $error');
-          }
-          if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
-            error = 'Permission denied- please enable it from app settings';
-            print("Error due to not Asking: $error");
-          }
+          prefs.setBool("alerted", true);
+          screenShake = "SOS alert Sent! Shake mode activated.";
         }
-      } catch (e) {
-        print(e);
+        //TODO translation
+        BackgroundServices.showSmsNotification(
+          title: "Safe Shake activated!",
+          content: screenShake,);
+      } on PlatformException catch (e) {
+        if (e.code == 'PERMISSION_DENIED') {
+          error = 'Please grant permission';
+          print('Error due to Denied: $error');
+        }
+        if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
+          error = 'Permission denied- please enable it from app settings';
+          print("Error due to not Asking: $error");
+        }
       }
-
-
-    });
-    service.on('stopService').listen((event) {
-      print("stopping service");
-      //TODO translation
-      BackgroundServices.cancelSmsNotification();
-      service.stopSelf();
-    });
-
-    // await BackgroundLocation.setAndroidNotification(
-    //   title: "Location tracking is running in the background!",
-    //   message: "You can turn it off from settings menu inside the app",
-    //   icon: '@mipmap/ic_launcher',
-    // );
-    //TODO location retrieve should start with the sms service
-
-    BackgroundLocation.getLocationUpdates((location) {
-      _location = location;
-      print("location : $location");
-      prefs?.setStringList("location",
-          [location.latitude.toString(), location.longitude.toString()]);
-    });
-    BackgroundLocation.startLocationService(
-      distanceFilter: 20,
-    );
-
+    } catch (e) {
+      print(e);
+    }
   }
+
+
   static void audioRecordCallBack(int status, String errorMsg) {
   switch (status) {
   case 1 /*recording started*/:
@@ -167,7 +125,7 @@ class BackgroundServices {
     //bool running = await FlutterBackgroundService().isServiceRunning();
     bool switchAudioRecord =
         (await SharedPreferences.getInstance()).getBool("bgRecord") ?? false;
-    bool switchValue =
+    bool switchSmsSend =
         (await SharedPreferences.getInstance()).getBool("smsSend") ?? false;
 
     switch (switchAudioRecord) {
@@ -185,16 +143,30 @@ class BackgroundServices {
         BackgroundServices.cancelaudioRecordNotification();
         break;
     }
-    switch (switchValue) {
+    switch (switchSmsSend) {
       case true:
-        BackgroundServices.getInstance().startService();
+        //TODO translate
+        BackgroundServices.showSmsNotification(
+          title: "Safe Shake activated!",
+          content: "Be strong, We are with you!",);
+
+        BackgroundLocation.getLocationUpdates(_updateLocation);
+        BackgroundLocation.startLocationService(
+          distanceFilter: 20,
+        );
 
         break;
       case false:
-        if (await BackgroundServices.getInstance().isRunning())
-          BackgroundServices.getInstance().invoke("stopService");
+        BackgroundServices.cancelSmsNotification();
+        BackgroundLocation.stopLocationService();
         break;
     }
+  }
+
+  static void _updateLocation(Location location){
+    _location = location;
+    print("location : $location");
+
   }
 }
 

@@ -43,7 +43,8 @@ class _LetsbeginState extends State<Letsbegin> {
                   itemBuilder: (context,index){
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
+                      child: GestureDetector(child: Text(locale[index]['name']),
+                        onTap: (){
                         print(locale[index]['name']);
                         updateLanguage(locale[index]['locale']);
                       },),

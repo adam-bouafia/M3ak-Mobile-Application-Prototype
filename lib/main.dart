@@ -19,19 +19,6 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await BackgroundServices.getInstance().configure(
-    androidConfiguration: AndroidConfiguration(
-      // this will be executed when app is in foreground or background in separated isolate
-      onStart: BackgroundServices.onStartSmsService,
-      // auto start service
-      //autoStart: true,
-      isForegroundMode: false,
-      notificationChannelId: BackgroundServices.smsNotificationChannelID,
-      foregroundServiceNotificationId: BackgroundServices.smsNotificationID,
-      initialNotificationTitle: "Safe Shake activated!",
-      initialNotificationContent: "Be strong, We are with you!",
-    ),
-  );
   BackgroundServices.checkService() ;
 
   ShakeDetector.autoStart(
@@ -58,7 +45,7 @@ void main() async {
         String link = '';
         //if (sms send is enabled in the shared preference , then perceed with the following routine
         if (sendSmsOption) {
-          BackgroundServices.getInstance().invoke('smsSend');
+          BackgroundServices.sendSms();
         } else {
           print("sms send fonctionality is desactivated");
         }
@@ -71,7 +58,6 @@ void main() async {
           if (isRecording == false) {
             if (audioRecordOption == true) {
               AudioBackgroundRecord.getInstance().startRecording();
-
               print("bg recording is activated");
             } else {
               print("bg recording is deactivated");

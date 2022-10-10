@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:audio_background_record/audio_background_record.dart';
+import 'package:background_location/background_location.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
@@ -98,6 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         onTap: () {
                           print(locale[index]['name']);
                           updateLanguage(locale[index]['locale']);
+
                         },
                       ),
                     );
@@ -161,31 +163,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     switchValue =
         (await SharedPreferences.getInstance()).getBool("smsSend") ?? false;
 
-    switch (switchAudioRecord) {
-      case true:
-        AudioBackgroundRecord.getInstance()
-          ..startRecordingService()
-          ..setOnRecordStatusChangedCallback(
-              BackgroundServices.audioRecordCallBack);
-        BackgroundServices.showAudioRecordNotification(
-            title: "Audio Recording",
-            content: "Audio Recording service is ready");
-        break;
-      case false:
-        AudioBackgroundRecord.getInstance().stopRecordingService();
-        BackgroundServices.cancelaudioRecordNotification();
-        break;
-    }
-    switch (switchValue) {
-      case true:
-        BackgroundServices.getInstance().startService();
-
-        break;
-      case false:
-        if (await BackgroundServices.getInstance().isRunning())
-          BackgroundServices.getInstance().invoke("stopService");
-        break;
-    }
   }
 
   //
@@ -207,13 +184,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     prefs.setBool("smsSend", val);
     switch (val) {
       case true:
-        BackgroundServices.getInstance().startService();
+      //TODO translate
+        BackgroundServices.showSmsNotification(
+          title: "Safe Shake activated!",
+          content: "Be strong, We are with you!",);
+
+        BackgroundLocation.startLocationService(
+          distanceFilter: 20,
+        );
 
         break;
       case false:
-        if (await BackgroundServices.getInstance().isRunning()) {
-          BackgroundServices.getInstance().invoke("stopService");
-        }
+        BackgroundServices.cancelSmsNotification();
+        BackgroundLocation.stopLocationService();
         break;
     }
   }
