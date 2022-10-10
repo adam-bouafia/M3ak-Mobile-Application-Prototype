@@ -5,6 +5,7 @@ import 'package:Dhayen/login/screens/reset_password.dart';
 import 'package:Dhayen/login/screens/signup_screen.dart';
 import 'package:Dhayen/login/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Dashboard/Splash/Splash.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
@@ -52,17 +54,36 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseUIButton(context, "S'identifier", () {
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Splash()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                firebaseUIButton(context, "S'identifier", ()  {
+                  try {
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                        email: _emailTextController.text,
+                        password: _passwordTextController.text)
+                        .then((value) async {
+                      (await SharedPreferences.getInstance()).setBool("appOpenedBefore", true);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Splash()));
+                    }).onError((error, stackTrace) {
+                      print("Error ${error.toString()}");
+                    });
+                  }on FirebaseAuthException catch(e) {
+                    switch(e.code){
+                      //TODO handle exceptions
+                      case 'invalid-email': break ;
+                      case 'user-disabled': break ;
+
+                      //either each exception treated separately
+                      case 'user-not-found': break ;
+                      case 'wrong-password': break ;
+                      //or consider then as one error
+                      // case 'user-not-found':
+                      // case 'wrong-password':/*code*/ break ;
+                      default: print(e);
+                    }
+                  }catch(e){
+                    print(e);
+                  }
                 }),
                 signUpOption()
               ],

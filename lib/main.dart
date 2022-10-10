@@ -85,9 +85,9 @@ class MyApp extends StatelessWidget {
   Future<bool> isAppOpeningForFirstTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool result = prefs.getBool("appOpenedBefore") ?? false;
-    if (!result) {
-      prefs.setBool("appOpenedBefore", true);
-    }
+    // if (!result) {
+    //   prefs.setBool("appOpenedBefore", true);
+    // }
     return result;
   }
 
